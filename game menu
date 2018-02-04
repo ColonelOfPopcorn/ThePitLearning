@@ -1,0 +1,98 @@
+#include <iostream>
+
+using namespace std;
+
+bool debug = true;
+
+//Display the initial message the player sees when opening the game. Will eventually be expanded to include menu selections.
+void introduction(int debugstatus)
+{
+    std::cout << "Welcome to The Test!" << std::endl;
+    std::cout << "this is currently placeholder text. What would you like to do?" << std::endl;
+    if (debugstatus == 1)
+        {
+        std::cout << "Debug mode is ON" << std::endl;
+        }
+}
+
+void debugmenu(){
+    if (debug == true){
+        std::cout << "Debug mode is currently ON. Would you like to turn it OFF? y/n" << std::endl;
+        int menuloop = 0;
+        while (menuloop = 0){
+                std::cout << "entering debug menu loop" << std::endl;
+            string response;
+            //std::cin >> ws;
+            getline(std::cin, response);
+            if(response == "Y" || response == "Yes" || response == "y" || response == "yes"){
+                debug = false; //
+                menuloop = 1;
+            }else if (response == "N" || response == "No" || response == "n" || response == "no"){
+                menuloop = 1; //this stops the loop as the debug menu is remaining on
+            }else{
+            std::cout << "Invalid Selection." << std::endl;
+            std::cout << "Debug mode is currently ON. Would you like to turn it OFF? y/n" << std::endl;
+            }
+        }
+    }
+        if (debug == false){
+        std::cout << "Debug mode is currently OFF. Would you like to turn it ON? y/n" << std::endl;
+        int menuloop = 0;
+        while (menuloop = 0){
+            string response;
+            std::cin >> ws;
+            getline(std::cin, response);
+            if (response == "Y" || response == "Yes" || response == "y" || response == "yes"){
+                debug = true; //
+                menuloop = 1;
+            }else if (response == "N" || response == "No" || response == "n" || response == "no"){
+                menuloop = 1; //this stops the loop as the debug menu is remaining on
+            }else{
+            std::cout << "Invalid Selection." << std::endl;
+            std::cout << "Debug mode is currently OFF. Would you like to turn it ON? y/n" << std::endl;
+            }
+        }
+    }
+    std::cout << "exiting debug menu" << std::endl;
+}
+
+void clientinput(bool debugstatus)
+{
+    string input;
+    getline(std::cin, input);
+    if (debugstatus == true)
+    {
+        std:cout << "<DEBUG>You entered: '" << input << "'" << std::endl;
+    }
+    if (input=="/debug"){
+        debugmenu();
+    }
+    /*int menuloop = 0;
+        while (menuloop = 0){
+            string response;
+            std::cin >> ws;
+            getline(std::cin, response);
+            switch (string(response)) {
+        case "/debug":
+            std::cout<<"Enter Debug"<<std::endl;
+            break;
+        case "/roll":
+            std::cout<<"Roll Menu placeholder"<<std::endl;
+            break;
+        case "Option 3":
+            std::cout<<"It pressed number 3"<<std::endl;
+            break;
+        default:
+            std::cout<<"Input:"<< response <<std::endl;
+            break;
+        }
+        }*/
+}
+int main()
+{
+    introduction(debug);
+    while (true){
+            clientinput(debug);
+    }
+    return 0;
+}
